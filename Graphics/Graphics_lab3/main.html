@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8"/>
+      <title>Graphics 3 usingCanvas</title>
+      <script type="text/javascript" src="drawing.js"></script>
+      <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+
+  <body>
+
+  <p align="center" style="font-size: 23px; margin-top: 0px"><b style="font-size: 35px; font-family: Bahnschrift">Bezier curve</b><br>
+    Here we`ll build Bezier curve and try to play with it.
+  </p>
+  <div class="init">
+      <div class="input" style="background-color:rgba(53,151,53,0.8);
+                         text-align: center; border-radius: 7px 0 0 7px">
+          <p>Point <span>#1</span></p>
+          <span>X = </span><input id="x1" type="text" size="1" value="40">
+          <span>Y = </span><input id="y1" type="text" size="1" value="200">
+      </div>
+      <div class="input" style="background-color:rgba(53,151,53,0.8); text-align: center;">
+          <p>Point <span>#2</span></p>
+          <span>X = </span><input id="x2" type="text" size="1" value="150">
+          <span>Y = </span><input id="y2" type="text" size="1" value="40">
+      </div>
+      <div class="input" style="background-color:rgba(53,151,53,0.8); text-align: center;">
+          <p>Point <span>#3</span></p>
+          <span>X = </span><input id="x3" type="text" size="1" value="600">
+          <span>Y = </span><input id="y3" type="text" size="1" value="350">
+      </div>
+      <div class="input" style="background-color:rgba(53,151,53,0.8);
+                         text-align: center; border-radius: 0 7px 7px 0">
+          <p>Point <span>#4</span></p>
+          <span>X = </span><input id="x4" type="text" size="1" value="660">
+          <span>Y = </span><input id="y4" type="text" size="1" value="200">
+      </div>
+  </div>
+
+  <div class="buttons">
+      <div class="execute">
+          <div onclick="draw()" class="button" id="start">Let`s see what we got!</div>
+
+          <div id="examples">
+              <div onclick="drawBezier([100,100,700,700],[100,450,100,450])" class="button example" id="firstExample">1</div>
+              <div onclick="drawBezier([100,100,700,700],[100,450,450,100])" class="button example" id="secondExample">2</div>
+              <div onclick="drawBezier([100,700,700,100],[100,450,100,450])" class="button example" id="thirdExample">3</div>
+              <div onclick="drawBezier([100,250,500,700],[250,250,250,250])" class="button example" id="fourthExample">4</div>
+          </div>
+      </div>
+
+      <div onclick="clearCanvas();" class="button" id="clear">Clear zone.</div>
+  </div>
+
+
+  <div class="mainBlock">
+  <canvas id="mainImg" width="800" height="550">
+    Sorry, you`re not a winner...
+  </canvas>
+  </div>
+
+  </body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8"/>
+      <title>Graphics 2 usingCanvas</title>
+      <script type="text/javascript" src="drawing.js"></script>
+      <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+
+  <body>
+
+  <p align="center" style="font-size: 23px; margin-top: 0px"><b style="font-size: 35px; font-family: Bahnschrift">Fractal</b><br>
+    Here we`ll build Fractal Ice Triangle. 
+  </p>
+      <div class="init">
+
+          <div class="buttons">
+             <div onclick="draw()" id="start" style="font-size: large; font-weight: bold; font-family: bahnschrift">Let`s see what we got!</div>
+             <div onclick="clearCanvas();" id="clear" style="font-size: large; font-weight: bold; font-family: bahnschrift">Clear zone.</div>
+          </div>
+          <div class="input" style="background-color:rgba(230,15,15,0.8); text-align: center;">
+              <p>Recursion <span>step</span></p>
+              <span>Step </span><input id="step" type="text" size="1" value="3">
+          </div>
+      </div>
+
+
+  <div class="mainBlock">
+  <canvas id="mainImg" width="800" height="550">
+    Sorry, you`re not a winner...
+  </canvas>
+  </div>
+
+  </body>
+</html>

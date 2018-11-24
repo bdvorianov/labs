@@ -1,0 +1,97 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.init {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 8px;
+}
+
+.init p {
+    margin: 10px 3px 9px;
+}
+
+canvas {
+    border: 2px solid black;
+    border-radius: 2%;
+}
+
+.mainBlock {
+    margin: 30px 10% 20px 10%;
+}
+
+input {
+    text-align: center;
+}
+
+.input {
+    padding: 1px 3px 8px;
+    justify-content: flex-start;
+    align-items: center;
+    border: 2px solid black;
+    width: 23%;
+}
+
+
+.input span {
+    font-weight: bold;
+    font-family: Bahnschrift;
+}
+
+.button{
+    background-color: darkgreen;
+    opacity: 0.8;
+    outline: black solid 2px;
+    outline-offset: -1px;
+    cursor: pointer;
+    font-size: large;
+    font-weight: bold;
+    font-family: bahnschrift;
+}
+
+.buttons {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.execute {
+    margin-right: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+#examples {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: baseline;
+    width: 100%;
+}
+
+.example {
+    width: 25%;
+    padding: 6px 20px 6px;
+}
+
+#start {
+    padding: 14px 20px 13px;
+}
+
+#clear {
+    padding: 30px 20px 30px;
+}
+
+.button:hover {
+    outline: black solid 3px;
+    outline-offset: -2px;
+    opacity: 1;
+}

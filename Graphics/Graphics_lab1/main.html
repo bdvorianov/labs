@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8"/>
+      <title>Graphics 1 usingCanvas</title>
+      <script type="text/javascript" src="drawing.js"></script>
+      <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+
+  <body>
+
+  <p align="center" style="font-size: 23px; margin-top: 0px"><b style="font-size: 35px; font-family: Bahnschrift">Crossing</b><br>
+      Points <b>A</b> and <b>B</b> relates to the <b><em style="color: darkcyan">cyan</em></b> line, points <b>C</b> and
+          <b>D</b> to <b><em style="color: darkmagenta">magenta</em></b> line.<br>Choose coords wisely, `cause points must be placed at borders!</p>
+      <div class="init">
+          <div class="input" style="background-color: darkcyan">
+              <p>Coordinates for <b>A</b></p>
+              <b>X </b><input id="AX" type="text" size="2" value="247">
+              <b>Y </b><input id="AY" type="text" size="2" value="0">
+          </div>
+          <div class="input" style="background-color: darkcyan; margin-right: 7px;">
+              <p>Coordinates for <b>B</b></p>
+              <b>X </b><input id="BX" type="text" size="2" value="553">
+              <b>Y </b><input id="BY" type="text" size="2" value="450">
+          </div>
+          <div class="input" style="background-color: darkmagenta">
+              <p>Coordinates for <b>C</b></p>
+              <b>X </b><input id="CX" type="text" size="2" value="553">
+              <b>Y </b><input id="CY" type="text" size="2" value="0">
+          </div>
+          <div class="input" style="background-color: darkmagenta">
+              <p>Coordinates for <b>D</b></p>
+              <b>X </b><input id="DX" type="text" size="2" value="247">
+              <b>Y </b><input id="DY" type="text" size="2" value="450">
+          </div>
+      </div>
+  <input onclick="draw();" id="start" type="button" value="Let`s see what we got!" style="font-size: large; font-weight: bold; font-style: oblique">
+
+  <div class="mainBlock">
+  <canvas id="mainImg" width="800" height="450">
+    Sorry, you`re not a winner...
+  </canvas>
+  </div>
+
+  </body>
+</html>

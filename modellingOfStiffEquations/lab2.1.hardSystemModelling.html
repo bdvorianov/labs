@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="ua">
+	<head>
+		<meta charset="utf-8">
+    
+        <title>LAB2.1 Dvorianov</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	</head>
+	<body>
+		<main>
+			<center><h1>Схема Ністрема 3</h1></center>
+			<canvas id="canvas" width="1000" height="650">
+        Sorry, you`re not a winner...
+            </canvas>
+            <div class = 'table'>
+            <table>
+            	<tr id = 'ttRow'>
+            		<td style = "background-color: lightgreen">tt</td>
+            	</tr>
+            	<tr id = 'uRow'>
+            		<td style = "background-color: lightgreen">U</td>
+            	</tr>
+            	<tr id = 'vRow'>
+            		<td style = "background-color: lightgreen">V</td>
+            	</tr>
+            </table>
+        </div>
+		</main>
+
+		<style>
+		
+		    body {
+		    	overflow: hidden;
+		    }
+			main {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+			}
+
+			h1 {
+				margin-top: -0.5vh;
+				font-family: Bahnschrift;
+				font-weight: bolder;
+				margin-bottom: 3vh;
+			}
+
+			canvas {
+				margin-top: -2.5vh;
+				border: 2px darkgreen dashed;
+				border-radius: 3%;
+			} 
+
+			.table {
+				width: 80vw;
+				height: 20vh;
+				overflow-x: scroll;
+                margin-top: 1vh;
+			}
+
+			table {
+                border-radius: 5%;
+                height: 100%;
+            }
+
+			td {
+				border: 2px dashed green;
+				padding: 0 8px;
+			}
+
+		</style>
+
+		<script>
+			/**
+			* @author b.dvorianov
+			*/
+
+            // !!! hint: hold a solved example near you when reading it !!!
+            // Math part initialisation
+            function phi1(tt) { return ( 3 * (Math.cos(tt) - Math.cos(3 * tt)) )};
+            function phi2(tt) { return ( 3 * (Math.sin(tt) - Math.sin(3 * tt)) )};
+            function phi3(tt) { return ( 7*Math.cos(2 * tt) - 2*Math.cos(tt)+1)};
+            function phi4(tt) { return ( 7*Math.sin(2 * tt) - Math.sin(tt))};
+
+            function valueOfU(tt)
+            {
+                return ((phi1(tt) * phi3(tt) + phi2(tt) * phi4(tt)) /
+                        (phi3(tt) * phi3(tt) + phi4(tt) * phi4(tt)));
+            }
+
+            function valueOfV(tt)
+            {
+                return ((phi2(tt) * phi3(tt) - phi1(tt) * phi4(tt)) /
+                        (phi3(tt) * phi3(tt) + phi4(tt) * phi4(tt)));
+            }
+
+            var U,V;
+
+            // canvas part initialisation
+			var canvas = document.getElementById('canvas');
+            var ctx = canvas.getContext('2d');
+
+            var x0 = canvas.width / 2;
+            var y0 = canvas.height / 2;
+            var scaleCoef = 300;
+
+            ctx.fillStyle = 'lightgreen';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            // creating chart oX, oY lines
+            
+            // oX line
+            ctx.beginPath();
+            ctx.strokeStyle = "black";
+            ctx.setLineDash([1,9]);
+            
+            ctx.moveTo(0, y0);
+            ctx.lineTo(canvas.width, y0);
+            ctx.stroke();
+            ctx.closePath();
+
+            // oX line
+            ctx.beginPath();
+            ctx.strokeStyle = "black";
+            ctx.setLineDash([1,9]);
+
+            ctx.moveTo(x0, 0);
+            ctx.lineTo(x0, canvas.height);
+            ctx.stroke();
+            ctx.closePath();
+            
+            // chart marks
+            ctx.font="12px Helvetica";
+
+            // for oX right
+            for(var i = 0; i < canvas.width; i += scaleCoef / 10) { ctx.fillText(' ' + i / (scaleCoef / 100), (i + x0), (y0 - 2)); };
+            // for 0X left
+            for(var i = 0; i < canvas.width; i += scaleCoef / 10) { ctx.fillText('-' + i / (scaleCoef / 100), (x0 - i), (y0 - 2)); };
+            // for oY up
+            for(var i = 0; i < canvas.height; i += scaleCoef / 10) { ctx.fillText(' ' + i / (scaleCoef / 100), (x0 + 2), (y0 - i)); };
+            // for oY down
+            for(var i = 0; i < canvas.height; i += scaleCoef / 10) { ctx.fillText('-' + i / (scaleCoef / 100), (x0 + 2), (y0 + i)); };
+
+            // the main deal :-)
+
+            ctx.beginPath();
+
+            ctx.fillStyle = 'black'; // dots colour
+            ctx.strokeStyle = 'green'; // line style
+            ctx.lineWidth = '3px';
+            ctx.setLineDash([]);
+
+            // first "manual" iteration to have init values to plot the path of function
+            tt = (Math.PI * 0) / 50;
+            U = valueOfU(tt) * scaleCoef;
+            V = valueOfV(tt) * scaleCoef;
+            ctx.fillRect((x0 + U), (y0 - V), 3, 3);
+
+            for(var i = 1; i <= 100; i++) {
+
+                tt = (Math.PI * i) / 50;
+                document.getElementById('ttRow').insertAdjacentHTML('beforeend', '<td>' + (tt.toFixed(2)).toString() + '</td>');                      
+                U = valueOfU(tt) * scaleCoef;
+                document.getElementById('uRow').insertAdjacentHTML('beforeend', '<td>' + (U.toFixed(2)).toString() + '</td>');
+                V = valueOfV(tt) * scaleCoef;
+                document.getElementById('vRow').insertAdjacentHTML('beforeend', '<td>' + (V.toFixed(2)).toString() + '</td>');
+                
+                // fill point we get from calculations
+                ctx.fillRect((x0 + U), (y0 - V), 3, 3);
+                // line to it
+                ctx.lineTo((x0 + U), (y0 - V));
+
+                ctx.stroke();
+                console.log(i + ' ' + tt + ' ' + (U / scaleCoef) + ' ' + (V / scaleCoef) + '\n');
+            };
+
+            // closing path and filling the figure we get
+            ctx.closePath();
+            ctx.fillStyle = 'white'; // shape filling style
+            ctx.fill();
+            ctx.fillStyle = 'red';  
+            var p0 = 1/4;
+            ctx.fillRect( ((3 * p0 - 3 * p0*p0*p0) / (7*p0*p0 - 2*p0 +1)) * scaleCoef, y0, 5, 5);
+            
+		</script>
+	</body>
+</html>
